@@ -43,18 +43,18 @@ function Row({ produce, month }) {
           {produce.name}
         </TableCell>
         <TableCell align="right">
-          {prevMonth < month ? (
+          {prevMonth < produce.commonality[month] ? (
             <ArrowDropDownIcon />
-          ) : prevMonth > month ? (
+          ) : prevMonth > produce.commonality[month] ? (
             <ArrowDropUpIcon />
           ) : (
             <RemoveIcon />
           )}
         </TableCell>
         <TableCell align="right">
-          {nextMonth < month ? (
+          {nextMonth < produce.commonality[month] ? (
             <ArrowDropDownIcon />
-          ) : nextMonth > month ? (
+          ) : nextMonth > produce.commonality[month] ? (
             <ArrowDropUpIcon />
           ) : (
             <RemoveIcon />
