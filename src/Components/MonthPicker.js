@@ -1,27 +1,48 @@
-import React from "react";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
+import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-const MonthPicker = () => {
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sept",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+const MonthPicker = ({month, setMonth, disable}) => {
+  const handleChange = (event) => {
+    setMonth(event.target.value);
+  };
+
   return (
-    <ButtonGroup variant="contained" orientation="vertical" aria-label="outlined primary button group">
-      <ButtonGroup variant="contained" aria-label="outlined primary button group">
-        <Button>Jan</Button>
-        <Button>Feb</Button>
-        <Button>Mär</Button>
-        <Button>Apr</Button>
-        <Button>Mai</Button>
-        <Button>Jun</Button>
-      </ButtonGroup>
-      <ButtonGroup variant="contained" aria-label="outlined primary button group">
-        <Button>Jul</Button>
-        <Button>Aug</Button>
-        <Button>Sep</Button>
-        <Button>Okt</Button>
-        <Button>Nov</Button>
-        <Button>Dez</Button>
-      </ButtonGroup>
-    </ButtonGroup>
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Month</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={month}
+          label="Month"
+          onChange={handleChange}
+          disabled={disable}
+        >
+          {months.map((month, index) => (
+            <MenuItem value={index}>{month}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
   );
 };
 
