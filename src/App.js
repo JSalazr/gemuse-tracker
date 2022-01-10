@@ -22,14 +22,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <Grid container alignItems="center" justifyContent="center" spacing={2}>
+      {/* <Grid container alignItems="center" justifyContent="center" spacing={2}>
         <Grid item size={8}>
           <MonthPicker />
         </Grid>
         <Grid item size={4}>
           <ProducePicker />
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid container alignItems="center" justifyContent="center" spacing={2}>
         <Grid item size={4}>
           <ProduceTable
