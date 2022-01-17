@@ -15,10 +15,7 @@ const filterProduce = (produceArr, month, selectedProduce) => {
     if (selectedProduce !== "") {
       return produce.name === selectedProduce;
     }
-    return (
-      produce.commonality[month] >=
-      (Math.max(...produce.commonality) + Math.min(...produce.commonality)) / 2
-    );
+    return produce.commonality[month] > 0;
   });
 };
 

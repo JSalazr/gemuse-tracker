@@ -9,7 +9,6 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -17,6 +16,19 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ProduceGraph from "./ProduceGraph";
+
+const getRowColor = (commonality) => {
+  switch (commonality) {
+    case 4:
+      return "table-row-green";
+    case 3:
+      return "table-row-light-green";
+    case 2:
+      return "table-row-yellow";
+    case 1:
+      return "table-row-orange";
+  }
+};
 
 function Row({ produce, month }) {
   const [prevMonth, setPrevMonth] = useState(
@@ -29,7 +41,10 @@ function Row({ produce, month }) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      <TableRow
+        sx={{ "& > *": { borderBottom: "unset" } }}
+        className={getRowColor(produce.commonality[month])}
+      >
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -39,34 +54,45 @@ function Row({ produce, month }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" sx={{fontSize: "1.2em"}}>
           {produce.name}
         </TableCell>
         <TableCell align="right">
-          {prevMonth < produce.commonality[month] ? (
-            <ArrowDropDownIcon />
-          ) : prevMonth > produce.commonality[month] ? (
-            <ArrowDropUpIcon />
-          ) : (
-            <RemoveIcon />
-          )}
+        <span style={{ verticalAlign: "middle", display: "inline-block", fontSize: "1.2em" }}>
+            {prevMonth}
+          </span>
+          <span style={{ verticalAlign: "middle", display: "inline-block" }}>
+            {prevMonth < produce.commonality[month] ? (
+              <ArrowDropDownIcon />
+            ) : prevMonth > produce.commonality[month] ? (
+              <ArrowDropUpIcon />
+            ) : (
+              <RemoveIcon />
+            )}
+          </span>
         </TableCell>
+        <TableCell align="right" sx={{fontSize: "1.2em"}}>{produce.commonality[month]}</TableCell>
         <TableCell align="right">
-          {nextMonth < produce.commonality[month] ? (
-            <ArrowDropDownIcon />
-          ) : nextMonth > produce.commonality[month] ? (
-            <ArrowDropUpIcon />
-          ) : (
-            <RemoveIcon />
-          )}
+          <span style={{ verticalAlign: "middle", display: "inline-block", fontSize: "1.2em" }}>
+            {nextMonth}
+          </span>
+          <span style={{ verticalAlign: "middle", display: "inline-block" }}>
+            {nextMonth < produce.commonality[month] ? (
+              <ArrowDropDownIcon />
+            ) : nextMonth > produce.commonality[month] ? (
+              <ArrowDropUpIcon />
+            ) : (
+              <RemoveIcon />
+            )}
+          </span>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <ProduceGraph data={produce} />
-             </Box>
+              <ProduceGraph data={produce} month={month} />
+            </Box>
           </Collapse>
         </TableCell>
       </TableRow>
@@ -99,9 +125,10 @@ const ProduceTable = ({ data, month }) => {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Produce</TableCell>
-            <TableCell align="right">Prev. Month</TableCell>
-            <TableCell align="right">Next Month</TableCell>
+            <TableCell sx={{fontSize: "1.2em"}}>Produce</TableCell>
+            <TableCell align="right" sx={{fontSize: "1.2em"}}>Prev. Month</TableCell>
+            <TableCell align="right" sx={{fontSize: "1.2em"}}>Curr. Month</TableCell>
+            <TableCell align="right" sx={{fontSize: "1.2em"}}>Next Month</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

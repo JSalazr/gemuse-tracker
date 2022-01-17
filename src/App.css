@@ -37,3 +37,19 @@
     transform: rotate(360deg);
   }
 }
+
+.table-row-green {
+  background-color:#9dd668;
+}
+
+.table-row-light-green {
+  background-color:#d2e16d;
+}
+
+.table-row-yellow {
+  background-color:#ffdb68;
+}
+
+.table-row-orange {
+  background-color:#ff9d00;
+}

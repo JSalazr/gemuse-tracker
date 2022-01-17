@@ -2,7 +2,7 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 
-const ProduceGraph = ({ data }) => {
+const ProduceGraph = ({ data, month }) => {
   const state = {
     labels: [
       "Jan",
@@ -20,7 +20,7 @@ const ProduceGraph = ({ data }) => {
     ],
     datasets: [
       {
-        backgroundColor: "rgba(75,192,192,1)",
+        backgroundColor: Array.from({length: 12}, (_, i) => i == month ? "rgba(140,207,78,1)" : "rgba(255,168,30,1)"),
         borderColor: "rgba(0,0,0,1)",
         borderWidth: 2,
         data: data.commonality,
