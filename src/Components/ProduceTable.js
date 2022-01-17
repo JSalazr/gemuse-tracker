@@ -57,20 +57,6 @@ function Row({ produce, month }) {
         <TableCell component="th" scope="row" sx={{fontSize: "1.2em"}}>
           {produce.name}
         </TableCell>
-        <TableCell align="right">
-        <span style={{ verticalAlign: "middle", display: "inline-block", fontSize: "1.2em" }}>
-            {prevMonth}
-          </span>
-          <span style={{ verticalAlign: "middle", display: "inline-block" }}>
-            {prevMonth < produce.commonality[month] ? (
-              <ArrowDropDownIcon />
-            ) : prevMonth > produce.commonality[month] ? (
-              <ArrowDropUpIcon />
-            ) : (
-              <RemoveIcon />
-            )}
-          </span>
-        </TableCell>
         <TableCell align="right" sx={{fontSize: "1.2em"}}>{produce.commonality[month]}</TableCell>
         <TableCell align="right">
           <span style={{ verticalAlign: "middle", display: "inline-block", fontSize: "1.2em" }}>
@@ -126,7 +112,6 @@ const ProduceTable = ({ data, month }) => {
           <TableRow>
             <TableCell />
             <TableCell sx={{fontSize: "1.2em"}}>Produce</TableCell>
-            <TableCell align="right" sx={{fontSize: "1.2em"}}>Prev. Month</TableCell>
             <TableCell align="right" sx={{fontSize: "1.2em"}}>Curr. Month</TableCell>
             <TableCell align="right" sx={{fontSize: "1.2em"}}>Next Month</TableCell>
           </TableRow>
